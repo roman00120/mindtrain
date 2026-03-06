@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narrativa | La Arquitectura de tus Historias</title>
+    <link rel="icon" type="image/png" href="images/MINDTRAIN LOGO (1).png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="landing-page">
+    <!-- Navbar -->
+    <header class="glass" style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 5%;">
+        <nav style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">
+                <img src="images/iconos/IMG_4860.PNG" alt="Logo"
+                    style="height: 100px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px var(--accent-glow)); vertical-align: middle; position: absolute; top: 50%; transform: translateY(-50%);">
+            </div>
+            <div style="display: flex; gap: 30px; align-items: center;">
+                <a href="#features"
+                    style="text-decoration: none; color: var(--text-secondary); font-weight: 600;">Funciones</a>
+                <a href="#tools"
+                    style="text-decoration: none; color: var(--text-secondary); font-weight: 600;">Herramientas</a>
+                <a href="#plans"
+                    style="text-decoration: none; color: var(--text-secondary); font-weight: 600;">Planes</a>
+                <button id="login-nav-btn" class="glass"
+                    style="padding: 10px 25px; cursor: pointer; border: none; color: white; background: var(--bg-glass);">Iniciar
+                    Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="landing-container">
+        <!-- Hero Section -->
+        <section class="hero-section"
+            style="height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+            <!-- Video Background -->
+            <video autoplay muted loop playsinline
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+                <source src="images/MINDTRAIN SPOT.mp4" type="video/mp4">
+            </video>
+            <!-- Premium Overlay -->
+            <div
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(10, 10, 18, 0.4) 0%, rgba(10, 10, 18, 0.8) 100%); backdrop-filter: blur(1px); z-index: 1;">
+            </div>
+            <div class="hero-content"
+                style="position: relative; z-index: 10; max-width: 1000px; padding: 2rem; text-align: center; animation: slideUp 1s ease-out;">
+                <div
+                    style="font-size: 1.2rem; color: var(--accent-secondary); margin-bottom: 1.5rem; letter-spacing: 8px; font-weight: 800; text-transform: uppercase;">
+                    Todos a bordo</div>
+                <h1
+                    style="font-size: clamp(3.5rem, 12vw, 7rem); line-height: 0.95; margin-bottom: 1.5rem; font-weight: 900; background: linear-gradient(135deg, #fff 0%, #a0a0c0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Encarrila tus historias, sé el conductor de tus ideas</h1>
+                <p
+                    style="font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 3rem; max-width: 750px; margin-inline: auto; line-height: 1.5;">
+                    Usa herramientas visuales y conceptuales para estructurar tu narrativa.</p>
+                <div style="display: flex; gap: 20px; justify-content: center;">
+                    <button id="cta-register" class="glass"
+                        style="padding: 1.5rem 3.5rem; font-size: 1.3rem; background: var(--accent-primary); color: white; border: none; font-weight: 800; cursor: pointer; border-radius: 50px; box-shadow: 0 15px 45px var(--accent-glow);">Comienza
+                        Ahora</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Gallery Section -->
+        <section id="tools" class="tools-gallery">
+            <div class="section-title">
+                <span class="tool-tag">Entorno Creativo</span>
+                <h2>Herramientas de Leyenda</h2>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Todo lo que necesitas para
+                    construir historias coherentes y narrativas profundas de forma visual y organizada, ¡en un solo
+                    lugar!.</p>
+            </div>
+
+            <div class="tools-grid">
+                <!-- 1. Proyectos -->
+                <div class="narrative-card">
+                    <div class="card-icon"><img src="images/iconos/HISTORIAS.png"></div>
+                    <h3>Proyectos e Historias</h3>
+                    <p>Dashboard central para organizar tus tramas, borradores y la estructura general de tu obra.</p>
+                    <div class="card-img-preview" style="background-image: url('images/HISTORIAS.jpeg');"></div>
+                </div>
+
+                <!-- 2. Personajes -->
+                <div class="narrative-card">
+                    <div class="card-icon"><img src="images/iconos/PERSONAJE.png"></div>
+                    <h3>Personajes</h3>
+                    <p>Fichas detalladas, arcos de evolución y perfiles psicológicos para tus protagonistas y
+                        antagonistas.</p>
+                    <div class="card-img-preview"
+                        style="background-image: linear-gradient(to bottom, rgba(138, 79, 255, 0.4), transparent), url('images/PERSONAJES.png'); background-position: top center;">
+                    </div>
+                </div>
+
+                <!-- 3. Lugares -->
+                <div class="narrative-card">
+                    <div class="card-icon"><img src="images/iconos/LUGARES.png"></div>
+                    <h3>Lugares y Escenarios</h3>
+                    <p>Worldbuilding profundo con descripciones, historia y atmósfera de cada rincón de tu mundo.</p>
+                    <div class="card-img-preview"
+                        style="background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.4), transparent), url('images/LUGARES.png'); background-position: center;">
+                    </div>
+                </div>
+
+                <!-- 4. Inventario -->
+                <div class="narrative-card">
+                    <div class="card-icon"><img src="images/iconos/INVENTARIO.png"></div>
+                    <h3>Inventario de Objetos</h3>
+                    <p>Gestiona ítems legendarios, reliquias y objetos clave con su propia historia y propiedades.</p>
+                    <div class="card-img-preview"
+                        style="background-image: linear-gradient(135deg, rgba(233, 69, 96, 0.4), transparent), url('images/INVENTARIO.png'); background-position: center; filter: hue-rotate(280deg);">
+                    </div>
+                </div>
+
+                <!-- 5. Lneas de Tiempo -->
+                <div class="narrative-card">
+                    <div class="card-icon"><img src="images/iconos/LINEAS TIEMPO.png"></div>
+                    <h3>Líneas de Tiempo</h3>
+                    <p>Visualiza la cronología de tu historia para evitar agujeros de guion y mantener el ritmo.</p>
+                    <div class="card-img-preview" style="background-image: url('images/LINEAS TIEMPO.jpeg');"></div>
+                </div>
+
+                <!-- 6. Red de Conexiones -->
+                <div class="narrative-card">
+                    <div class="card-icon"><img src="images/iconos/REDES CONEXIONES.png"></div>
+                    <h3>Red de Conexiones</h3>
+                    <p>Mapa interactivo de relaciones para entender cómo se entrelazan tus personajes y facciones.</p>
+                    <div class="card-img-preview" style="background-image: url('images/REDES PERSONAJESs.png');"></div>
+                </div>
+
+                <!-- 7. Arboles Genealgicos -->
+                <div class="narrative-card">
+                    <div class="card-icon"><img src="images/iconos/ARBOLES.png"></div>
+                    <h3>Árboles Genealógicos</h3>
+                    <p>Traza linajes, herencias y dinastías para dar profundidad histórica a tus familias narrativas.
+                    </p>
+                    <div class="card-img-preview"
+                        style="background-image: linear-gradient(to top, rgba(138, 79, 255, 0.3), transparent), url('images/ARBOLES.png'); filter: brightness(1.2) saturate(1.5);">
+                    </div>
+                </div>
+
+                <!-- 8. Storyboards -->
+                <div class="narrative-card">
+                    <span class="coming-soon-badge">PRÓXIMAMENTE</span>
+                    <div class="card-icon"><img src="images/iconos/STORYBOARDS.png"></div>
+                    <h3>Storyboards</h3>
+                    <p>Visualiza cada escena y acto con referencias visuales para una narrativa cinematográfica.</p>
+                    <div class="card-img-preview" style="background-image: url('images/STORYBOARD.png');"></div>
+                </div>
+
+                <!-- 9. Tiers/Icebergs -->
+                <div class="narrative-card">
+                    <span class="coming-soon-badge">PRÓXIMAMENTE</span>
+                    <div class="card-icon"><img src="images/iconos/ICEBERG.png"></div>
+                    <h3>Tiers y Icebergs</h3>
+                    <p>Clasifica sistemas de magia, jerarquías de poder o misterios profundos de tu universo.</p>
+                    <div class="card-img-preview" style="background-image: url('images/ICEBERGS.png');"></div>
+                </div>
+
+                <!-- 10. Colecciones -->
+                <div class="narrative-card">
+                    <span class="coming-soon-badge">PRÓXIMAMENTE</span>
+                    <div class="card-icon"><img src="images/iconos/COLECCIONES.png"></div>
+                    <h3>Colecciones</h3>
+                    <p>Agrupa elementos por temas, arcos narrativos o libros dentro de una misma saga.</p>
+                    <div class="card-img-preview"
+                        style="background-image: linear-gradient(45deg, rgba(15, 52, 96, 0.5), transparent), url('images/COLECCIONES.png'); background-position: bottom; filter: contrast(1.1);">
+                    </div>
+                </div>
+
+                <!-- 11. Mapas -->
+                <div class="narrative-card">
+                    <span class="coming-soon-badge">PRÓXIMAMENTE</span>
+                    <div class="card-icon"><img src="images/iconos/MAPAS.png"></div>
+                    <h3>Mapas Interactivos</h3>
+                    <p>Cartografía digital para situar tus historias en el espacio geográfico de tu imaginación.</p>
+                    <div class="card-img-preview"
+                        style="background-image: linear-gradient(to bottom, rgba(78, 204, 163, 0.4), transparent), url('images/MAPA.png'); background-position: center; filter: saturate(1.2);">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Plans Section -->
+        <section id="plans" class="plans-landing">
+            <div class="section-title">
+                <h2>Elige tu camino</h2>
+                <p style="color: var(--text-secondary);">Empieza gratis y sube a Pro cuando quieras trabajar sin
+                    limites.</p>
+            </div>
+
+            <div class="landing-plan-toggle">
+                <button id="landing-billing-monthly" class="is-active" type="button"
+                    data-billing="monthly">Mensual</button>
+                <button id="landing-billing-yearly" type="button" data-billing="yearly">Anual</button>
+            </div>
+
+            <div class="landing-plan-grid">
+                <article class="landing-plan-card glass">
+                    <p class="landing-plan-tag">INICIO</p>
+                    <h3>Gratis</h3>
+                    <p class="landing-plan-price">MXN 0/mes</p>
+                    <button class="landing-plan-btn outline" onclick="window.location.href='signup.html'">Usar
+                        Gratis</button>
+                    <ul class="landing-plan-list">
+                        <li>40 personajes</li>
+                        <li>40 objetos</li>
+                        <li>16 lugares</li>
+                        <li>8 lineas</li>
+                        <li>8 redes</li>
+                        <li>6 arboles</li>
+                        <li>8 tiers</li>
+                        <li>8 icebergs</li>
+                        <li>6 colecciones</li>
+                    </ul>
+                </article>
+
+                <article class="landing-plan-card glass popular">
+                    <p class="landing-plan-tag">LO MAS POPULAR</p>
+                    <h3>Pro Ilimitado</h3>
+                    <p class="landing-plan-price">
+                        <span class="landing-price-monthly">USD 5/mes</span>
+                        <span class="landing-price-yearly">USD 50/anual</span>
+                    </p>
+                    <button class="landing-plan-btn solid" onclick="window.location.href='login.html'">Pagar con
+                        PayPal</button>
+                    <ul class="landing-plan-list">
+                        <li>Todo ilimitado</li>
+                        <li>Sin limites por categoria</li>
+                        <li>Acceso total a herramientas</li>
+                        <li>Mejor experiencia para proyectos grandes</li>
+                    </ul>
+                </article>
+
+                <article class="landing-plan-card glass">
+                    <p class="landing-plan-tag">COMUNIDAD</p>
+                    <h3>Donar</h3>
+                    <p class="landing-plan-price">Apoya el proyecto</p>
+                    <button class="landing-plan-btn outline"
+                        onclick="window.open('https://paypal.me/Mindtrain','_blank','noopener,noreferrer')">Donar
+                        ahora</button>
+                    <ul class="landing-plan-list">
+                        <li>Apoyo directo al desarrollo</li>
+                        <li>Mejoras y nuevas funciones</li>
+                        <li>Mantener la plataforma activa</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div style="flex: 1;">
+            <div class="logo">NARRATIVA</div>
+            <p style="color: var(--text-muted); margin-top: 1.5rem; line-height: 1.8; font-size: 0.95rem;">Potenciando
+                la próxima generación
+                de historias legendarias. Sin límites, sin distracciones, solo pura creatividad.</p>
+        </div>
+        <div>
+            <h4 style="margin-bottom: 1.8rem; font-weight: 800; letter-spacing: 1px;">Producto</h4>
+            <ul
+                style="list-style: none; color: var(--text-muted); display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+                <li>Funciones</li>
+                <li>Herramientas</li>
+                <li>Hoja de Ruta</li>
+            </ul>
+        </div>
+        <div>
+            <h4 style="margin-bottom: 1.8rem; font-weight: 800; letter-spacing: 1px;">Recursos</h4>
+            <ul
+                style="list-style: none; color: var(--text-muted); display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+                <li>Guía de Escritura</li>
+                <li>Blog</li>
+                <li>Comunidad</li>
+            </ul>
+        </div>
+        <div>
+            <h4 style="margin-bottom: 1.8rem; font-weight: 800; letter-spacing: 1px;">Legal</h4>
+            <ul
+                style="list-style: none; color: var(--text-muted); display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem;">
+                <li>Privacidad</li>
+                <li>Términos</li>
+                <li>Cookies</li>
+            </ul>
+        </div>
+    </footer>
+
+
+    <!-- Global Scripts -->
+
+    <script>
+        const loginBtn = document.getElementById('login-nav-btn');
+        const ctaBtn = document.getElementById('cta-register');
+
+        const redirectToLogin = () => {
+            window.location.href = 'login.html';
+        };
+
+        loginBtn.addEventListener('click', redirectToLogin);
+        ctaBtn.addEventListener('click', () => {
+            window.location.href = 'signup.html';
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Plans billing toggle (landing)
+        const plansSection = document.querySelector('.plans-landing');
+        const monthlyBtn = document.getElementById('landing-billing-monthly');
+        const yearlyBtn = document.getElementById('landing-billing-yearly');
+
+        const setLandingBilling = (mode) => {
+            if (!plansSection) return;
+            const safeMode = mode === 'yearly' ? 'yearly' : 'monthly';
+            plansSection.dataset.billing = safeMode;
+            if (monthlyBtn) monthlyBtn.classList.toggle('is-active', safeMode === 'monthly');
+            if (yearlyBtn) yearlyBtn.classList.toggle('is-active', safeMode === 'yearly');
+        };
+
+        if (monthlyBtn && yearlyBtn) {
+            monthlyBtn.addEventListener('click', () => setLandingBilling('monthly'));
+            yearlyBtn.addEventListener('click', () => setLandingBilling('yearly'));
+            setLandingBilling('monthly');
+        }
+    </script>
+</body>
+
+</html>

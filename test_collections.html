@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Colecciones</title>
+    <link rel="icon" type="image/png" href="images/MINDTRAIN LOGO (1).png">
+    <style>
+        body {
+            background: #0a0a12;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+
+        .test-result {
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .success {
+            border-left: 4px solid #10b981;
+        }
+
+        .error {
+            border-left: 4px solid #ef4444;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: #8a4fff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🧪 Test de Funciones de Colecciones</h1>
+    <div id="results"></div>
+
+    <h2>Acciones de Prueba</h2>
+    <button onclick="testCreateCollection()">Crear Colección de Prueba</button>
+    <button onclick="testAddItem()">Agregar Item de Prueba</button>
+    <button onclick="viewState()">Ver Estado Actual</button>
+    <button onclick="clearState()">Limpiar Todo</button>
+    <button onclick="location.href='dashboard.html'">Ir al Dashboard</button>
+
+    <script type="module">
+        // Import store from main.js
+        import { store } from './js/main.js';
+        window.store = store;
+
+        window.testCreateCollection = () => {
+            try {
+                store.addItem('Colecciones', {
+                    name: 'Test Collection ' + Date.now(),
+                    desc: 'Colección de prueba',
+                    items: []
+                });
+                addResult('✅ Colección creada exitosamente', 'success');
+                viewState();
+            } catch (e) {
+                addResult('❌ Error: ' + e.message, 'error');
+            }
+        };
+
+        window.testAddItem = () => {
+            try {
+                const s = store.getState();
+                const collections = s.Colecciones || [];
+                if (collections.length === 0) {
+                    addResult('⚠️ Primero crea una colección', 'error');
+                    return;
+                }
+
+                const col = collections[0];
+                const items = [...(col.items || []), {
+                    id: Date.now(),
+                    name: 'Item Test ' + Date.now(),
+                    image: null,
+                    checked: false
+                }];
+                store.updateItem('Colecciones', col.id, { items });
+                addResult('✅ Item agregado exitosamente', 'success');
+                viewState();
+            } catch (e) {
+                addResult('❌ Error: ' + e.message, 'error');
+            }
+        };
+
+        window.viewState = () => {
+            const s = store.getState();
+            const collections = s.Colecciones || [];
+            let html = `<h3>📊 Estado Actual</h3>`;
+            html += `<p><strong>Total Colecciones:</strong> ${collections.length}</p>`;
+
+            collections.forEach((col, i) => {
+                html += `<div style="margin: 10px 0; padding: 10px; background: rgba(138,79,255,0.1); border-radius: 8px;">`;
+                html += `<strong>${i + 1}. ${col.name}</strong> (ID: ${col.id})<br>`;
+                html += `Descripción: ${col.desc || 'Sin descripción'}<br>`;
+                html += `Items: ${(col.items || []).length}`;
+                if (col.items && col.items.length > 0) {
+                    html += `<ul>`;
+                    col.items.forEach(item => {
+                        html += `<li>${item.name} ${item.checked ? '✓' : ''}</li>`;
+                    });
+                    html += `</ul>`;
+                }
+                html += `</div>`;
+            });
+
+            addResult(html, 'success');
+        };
+
+        window.clearState = () => {
+            if (confirm('¿Limpiar todas las colecciones?')) {
+                store.setState({ Colecciones: [] });
+                addResult('🗑️ Estado limpiado', 'success');
+                viewState();
+            }
+        };
+
+        function addResult(message, type) {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            document.getElementById('results').prepend(div);
+        }
+
+        // Initial state check
+        setTimeout(() => {
+            addResult('✅ Sistema cargado correctamente', 'success');
+            viewState();
+        }, 500);
+    </script>
+</body>
+
+</html>

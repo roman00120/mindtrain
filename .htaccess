@@ -1,0 +1,12 @@
+Options -Indexes
+
+# Block sensitive recovery script in production
+<Files "reset_admin.php">
+    Require all denied
+</Files>
+
+# Block direct web access to database artifacts
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^db/ - [F,L]
+</IfModule>

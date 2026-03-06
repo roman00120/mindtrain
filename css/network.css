@@ -1,0 +1,39 @@
+/* Network Editor Styles */
+.network-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    gap: 0 !important;
+}
+
+.network-node {
+    transition: transform 0.1s, box-shadow 0.2s;
+    cursor: grab;
+    position: absolute;
+    /* Ensure absolute positioning works */
+}
+
+.network-node:active {
+    cursor: grabbing;
+}
+
+.network-node:hover {
+    transform: scale(1.05);
+    border-color: var(--accent-secondary) !important;
+    z-index: 100 !important;
+    /* Always on top when hovering */
+}
+
+.network-node.node-hover {
+    box-shadow: 0 0 0 3px var(--accent-secondary), 0 0 20px var(--accent-secondary);
+}
+
+.connection-line {
+    transition: stroke-width 0.2s;
+}
+
+.connection-line:hover {
+    stroke-width: 4px;
+    stroke: var(--accent-secondary);
+    cursor: pointer;
+}

@@ -1,0 +1,306 @@
+﻿<?php
+require_once __DIR__ . '/php/bootstrap.php';
+narrativa_send_security_headers();
+narrativa_start_secure_session();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narrativa | Workspace 3.0</title>
+    <link rel="icon" type="image/png" href="images/MINDTRAIN LOGO (1).png">
+    <link rel="stylesheet" href="css/style.css?v=20260224g">
+    <link rel="stylesheet" href="css/tiers.css">
+    <link rel="stylesheet" href="css/network.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        .sidebar {
+            overflow-y: auto;
+        }
+
+        #tool-nav li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 12px;
+            margin: 2px 10px;
+        }
+
+        #tool-nav li:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        #tool-nav li.active {
+            background: rgba(138, 79, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .nav-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        #tool-nav li:hover .nav-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        #tool-nav li.nav-add {
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+            margin-left: 45px;
+            opacity: 0.7;
+            padding: 5px 15px;
+            border-left: 1px solid rgba(138, 79, 255, 0.2);
+        }
+
+        #tool-nav li.nav-add:hover {
+            opacity: 1;
+            background: transparent;
+            color: var(--accent-secondary);
+        }
+
+        /* Premium lock visual state */
+        #tool-nav li.premium-tool {
+            position: relative;
+        }
+
+        #tool-nav li.premium-tool .nav-lock {
+            margin-left: auto;
+            font-size: 0.75rem;
+            opacity: 0.9;
+            color: #7fd8ff;
+        }
+
+        body:not(.is-pro) #tool-nav li.premium-tool {
+            opacity: 0.78;
+            border: 1px dashed rgba(127, 216, 255, 0.25);
+            background: rgba(24, 34, 60, 0.22);
+        }
+
+        body:not(.is-pro) #tool-nav li.premium-tool:hover {
+            background: rgba(36, 54, 84, 0.35);
+        }
+
+        body.is-pro #tool-nav li.premium-tool .nav-lock {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="dashboard-page">
+    <div class="app-layout">
+        <button class="mobile-menu-btn" type="button" aria-label="Abrir menu" onclick="toggleMobileSidebar()">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="mobile-sidebar-backdrop" onclick="closeMobileSidebar()"></div>
+        <!-- Sidebar Izquierda (Categorías principales) -->
+        <aside class="sidebar left-sidebar">
+            <h2 class="sidebar-title" style="padding: 2.5rem 2rem 1rem 2rem;">Narrativa</h2>
+            <nav id="tool-nav">
+                <ul>
+                    <li data-view="proyectos" class="active"><img src="images/iconos/HISTORIAS.png" class="nav-icon"> Proyectos / Historias</li>
+                    <li data-view="personajes"><img src="images/iconos/PERSONAJE.png" class="nav-icon"> Personajes</li>
+                    <li data-view="lugares"><img src="images/iconos/LUGARES.png" class="nav-icon"> Lugares</li>
+                    <li data-view="inventario"><img src="images/iconos/INVENTARIO.png" class="nav-icon"> Inventario</li>
+                    <li data-view="Colecciones"><img src="images/iconos/COLECCIONES.png" class="nav-icon"> Colecciones</li>
+                    <li data-view="tiers"><img src="images/iconos/ICEBERG.png" class="nav-icon"> Tier List/iceberg</li>
+                    <li data-view="timeline"><img src="images/iconos/LINEAS TIEMPO.png" class="nav-icon"> Cronologias</li>
+                    <li data-view="network"><img src="images/iconos/REDES CONEXIONES.png" class="nav-icon">Red de Conexiones</li>
+                    <li data-view="genealogy"><img src="images/iconos/ARBOLES.png" class="nav-icon"> Arboles</li>
+                    <li data-view="mapas" class="premium-tool"><img src="images/iconos/MAPAS.png" class="nav-icon"> Mapas <span class="nav-lock" aria-hidden="true">LOCK</span></li>
+                    <li data-view="storyboard" class="premium-tool"><img src="images/iconos/STORYBOARDS.png" class="nav-icon"> Storyboards <span class="nav-lock" aria-hidden="true">LOCK</span></li>
+                </ul>
+            </nav>
+            <div id="sidebar-promo" style="margin-top:auto; padding:2rem;">
+                <button class="f-button plan-trigger-btn" id="btn-subscribe-sidebar" onclick="openPlanCenter()"
+                    style="width:100%; font-size:0.7rem; margin-bottom:10px;">PLANES</button>
+                <button class="f-button glass" id="btn-donate-sidebar" onclick="donateMock()"
+                    style="width:100%; font-size:0.7rem;">DONAR</button>
+            </div>
+        </aside>
+
+        <!-- Área Central (Navegación Superior + Workspace) -->
+        <div class="main-content-wrapper">
+            <!-- Nuevo Encabezado Horizontal (Sketch) -->
+            <header class="app-header-nav glass">
+                <div class="nav-group">
+                    <button class="nav-item active" data-view="proyectos" title="Proyectos"><img src="images/iconos/HISTORIAS.png" alt="P"><span>Proyectos</span></button>
+                    <button class="nav-item" data-view="publicaciones" title="Publicar"><img src="images/PUBLICAR.png" alt="B"><span>Publicar</span></button>
+                    <button class="nav-item" data-view="Colecciones" title="Fijados"><img src="images/iconos/FIJADOS.png" alt="F"><span>Fijados</span></button>
+                    <button class="nav-item" data-view="trivia" title="Trivia"><img src="images/iconos/TRIVIA.png" alt="T"><span>Trivia</span></button>
+                    <button class="nav-item" data-view="merch" title="Merch"><img src="images/iconos/MERCH2.png" alt="M"><span>Merch</span></button>
+                    <button class="nav-item" data-view="servicios" title="Servicios"><img src="images/iconos/HISTORIAS.png" alt="S"><span>Servicios</span></button>
+                    <button class="nav-item" data-view="indautor" title="INDAUTOR"><img src="images/iconos/IMPI.png" alt="I"><span>INDAUTOR</span></button>
+                    <button class="nav-item" data-view="expo" title="Expo"><img src="images/iconos/LUGARES.png" alt="E"><span>Expo</span></button>
+                    <button class="nav-item admin-only" data-view="admin" title="Admin" style="display:none;"><img src="images/iconos/COLECCIONES.png" alt="A"><span>Admin</span></button>
+                </div>
+                <div class="global-search" style="margin-left: 18px; min-width: 240px; max-width: 360px; flex: 1;">
+                    <input id="global-search" class="f-input" type="search" placeholder="Buscar en todo..." style="width: 100%; height: 38px; padding: 0 14px; font-size: 0.85rem;">
+                </div>
+                <div class="user-meta" style="display: flex; align-items: center; gap: 15px; margin-left: auto;">
+                    <span id="user-display" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; color: var(--accent-secondary);">ADMIN</span>
+                    <button class="logout-btn" onclick="window.handleLogout ? window.handleLogout() : (window.location.href=&quot;login.html&quot;)" style="background: none; border: none; cursor: pointer; padding: 0; line-height: 0;"><img src="images/SALIDA.png" alt="Salir" style="width: 36px; height: 36px; object-fit: contain;"></button>
+                </div>
+            </header>
+
+            <main class="workspace">
+                <header class="workspace-header">
+                    <h1 id="active-tool-title">Proyectos</h1>
+                </header>
+                <section id="view-container">
+                    <!-- Vistas dinámicas -->
+                </section>
+            </main>
+
+            <!-- Botón IA Flotante -->
+            <button class="ia-floating-trigger" id="ia-trigger" onclick="toggleIAAssist()">
+                <div class="ia-inner">
+                    <img src="images/iconos/ASISTENTE IA.png" alt="IA">
+                </div>
+                <span class="ia-label">AI ASSIST</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Modal de Creación (Solo para Proyectos y Mapas ahora) -->
+    <div id="creation-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content glass">
+        <h3 id="modal-title">Nueva Entrada</h3>
+        <form id="creation-form">
+            <input type="hidden" id="edit-id">
+            <input type="hidden" id="edit-context" value="">
+            <input type="hidden" id="edit-parent-id" value="">
+            <input type="text" id="m-name" placeholder="Nombre / Título" required class="f-input">
+            <select id="m-type" class="f-input">
+                <option value="Proyecto">Proyecto / Historia</option>
+                <option value="Mapa">Mapa Cartográfico</option>
+            </select>
+            <textarea id="m-desc" placeholder="Descripción breve..." class="f-input"></textarea>
+
+            <div class="file-input-wrapper">
+                <label for="m-image" class="f-button" style="display:inline-block;">ðŸ“· Subir Imagen/Arte</label>
+                <input type="file" id="m-image" accept="image/*" style="display:none;">
+            </div>
+
+            <div id="img-preview" style="margin-top: 15px; text-align: center; display: none;">
+                <img src="" id="creation-img-prev" style="max-width: 100%; height: 100px; border-radius: 12px;">
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" id="btn-close-modal" class="f-button" style="background:#333;">Cancelar</button>
+                <button type="button" id="btn-delete-item" class="f-button" style="display:none; background:#7f1d1d;">Eliminar</button>
+                <button type="submit" class="f-button">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Dialog Modal Universal (Reemplaza prompt/confirm) -->
+<div id="dialog-modal" class="modal-overlay" style="display: none; z-index: 9999;">
+    <div class="modal-content glass" style="max-width: 450px;">
+        <h3 id="dialog-title">Confirmar</h3>
+        <p id="dialog-message" style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.9;"></p>
+        <div id="dialog-input-container" style="display: none; margin-bottom: 20px;">
+            <input type="text" id="dialog-input" class="f-input" placeholder="...">
+        </div>
+        <div id="dialog-select-container" style="display: none; margin-bottom: 20px;">
+            <select id="dialog-select" class="f-input"></select>
+        </div>
+        <div id="dialog-file-container" style="display: none; margin-bottom: 20px;">
+            <input type="file" id="dialog-file" class="f-input">
+        </div>
+        <div class="modal-actions">
+            <button type="button" id="btn-dialog-cancel" class="f-button" style="background:#333;">Cancelar</button>
+            <button type="button" id="btn-dialog-confirm" class="f-button">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Plan Modal -->
+<div id="plan-modal" class="plan-modal-overlay" data-billing="monthly" style="display:none;">
+    <div class="plan-modal-shell glass">
+        <button class="plan-close-btn" type="button" onclick="closePlanCenter()">X</button>
+        <div class="plan-billing-toggle">
+            <button id="plan-billing-monthly" class="is-active" type="button" onclick="setPlanBilling('monthly')">Mensual</button>
+            <button id="plan-billing-yearly" type="button" onclick="setPlanBilling('yearly')">
+                Anual
+            </button>
+        </div>
+
+        <div class="plan-cards-row">
+            <article class="plan-card plan-card-free">
+                <p class="plan-badge">INICIO</p>
+                <h3>Gratis</h3>
+                <p class="plan-price plan-price-monthly">MXN 0/mes</p>
+                <p class="plan-price plan-price-yearly">MXN 0/anual</p>
+                <button class="plan-cta-outline" type="button" onclick="choosePlan('free')">Usar Gratis</button>
+                <ul class="plan-feature-list">
+                    <li>40 personajes</li>
+                    <li>40 objetos</li>
+                    <li>16 lugares</li>
+                    <li>8 lineas</li>
+                    <li>8 redes</li>
+                    <li>6 arboles</li>
+                    <li>8 tiers</li>
+                    <li>8 icebergs</li>
+                    <li>6 colecciones</li>
+                </ul>
+            </article>
+
+            <article class="plan-card plan-card-pro plan-card-popular">
+                <p class="plan-badge">LO MAS POPULAR</p>
+                <h3>Pro Ilimitado</h3>
+                <p class="plan-price plan-price-monthly">USD 5/mes</p>
+                <p class="plan-price plan-price-yearly">USD 50/anual</p>
+                <p class="plan-price-note plan-price-yearly">Cobro anual equivalente</p>
+                <button class="plan-cta-solid" type="button" onclick="startProCheckout()">Pagar con PayPal</button>
+                <div id="paypal-pro-wrap" class="plan-paypal-wrap" style="display:none;">
+                    <div id="paypal-pro-button"></div>
+                </div>
+                <ul class="plan-feature-list">
+                    <li>Todo ilimitado</li>
+                    <li>Sin limites por categoria</li>
+                    <li>Acceso total a herramientas</li>
+                    <li>Mejor experiencia para proyectos grandes</li>
+                </ul>
+            </article>
+
+            <article class="plan-card plan-card-donate">
+                <p class="plan-badge">COMUNIDAD</p>
+                <h3>Donar</h3>
+                <p class="plan-price">Apoya el proyecto</p>
+                <button class="plan-cta-outline" type="button" onclick="donateMock()">Donar ahora</button>
+                <ul class="plan-feature-list">
+                    <li>Apoyo directo al desarrollo</li>
+                    <li>Mejoras y nuevas funciones</li>
+                    <li>Mantener la plataforma activa</li>
+                </ul>
+            </article>
+        </div>
+    </div>
+</div>
+<script type="module" src="js/main.js?v=<?php echo @filemtime(__DIR__ . '/js/main.js') ?: time(); ?>"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+
+</html>
+
+

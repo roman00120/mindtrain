@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narrativa | Sincronizaci&oacute;n</title>
+    <link rel="icon" type="image/png" href="images/MINDTRAIN LOGO (1).png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-primary: #8a4fff;
+            --accent-secondary: #00d2ff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0c0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1506466010722-395aa2bef877?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Dark overlay for contrast */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 20, 0.65);
+            backdrop-filter: blur(5px);
+            z-index: 1;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 10;
+            width: 380px;
+            padding: 3.5rem 3rem;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 3rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-secondary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent-primary);
+            border: none;
+            color: #fff;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            box-shadow: 0 8px 25px rgba(138, 79, 255, 0.4);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(138, 79, 255, 0.5);
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .google-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .signup-text {
+            margin-top: 2.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .signup-text a {
+            color: var(--accent-secondary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="login-page">
+    <div class="login-card">
+        <a href="index.html" class="logo-link">
+            <img src="images/iconos/IMG_4860.PNG" alt="Narrativa Logo"
+                style="height: 60px; width: auto; margin-bottom: 0.5rem; filter: drop-shadow(0 0 8px rgba(138, 79, 255, 0.4));">
+        </a>
+        <div class="subtitle">Gestiona tu universo creativo</div>
+
+        <form id="login-form">
+            <div class="input-group">
+                <input type="text" placeholder="Usuario o Correo" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Contrase&ntilde;a" required>
+            </div>
+            <button type="submit" class="login-btn" id="login-submit-btn">Entrar al Panel</button>
+        </form>
+
+        <div id="auth-message"
+            style="margin-top: 1.5rem; font-size: 0.85rem; display: none; padding: 10px; border-radius: 8px; animation: fadeIn 0.3s ease-out;">
+        </div>
+
+        <button type="button" class="google-btn" id="google-btn">
+            <img src="https://www.google.com/favicon.ico" width="18"> Google Account
+        </button>
+
+        <div class="signup-text">
+            No tienes cuenta? <a href="signup.html">Reg&iacute;strate</a>
+        </div>
+    </div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        const authMessage = document.getElementById('auth-message');
+        const loginBtn = document.getElementById('login-submit-btn');
+        const googleBtn = document.getElementById('google-btn');
+        let csrfToken = '';
+        let googleClientId = '';
+
+        const getCsrfToken = async () => {
+            if (csrfToken) return csrfToken;
+            const response = await fetch('php/csrf.php', { credentials: 'same-origin' });
+            const result = await response.json();
+            if (!result.success || !result.token) {
+                throw new Error('No se pudo obtener token CSRF');
+            }
+            csrfToken = result.token;
+            return csrfToken;
+        };
+
+        const showMessage = (msg, isError = false) => {
+            authMessage.textContent = msg;
+            authMessage.style.display = 'block';
+            authMessage.style.background = isError ? 'rgba(255, 62, 62, 0.15)' : 'rgba(16, 185, 129, 0.15)';
+            authMessage.style.color = isError ? '#ff3e3e' : '#10b981';
+            authMessage.style.border = `1px solid ${isError ? '#ff3e3e33' : '#10b98133'}`;
+        };
+
+        const setLoader = (btn, isLoading, originalText) => {
+            btn.disabled = isLoading;
+            btn.style.opacity = isLoading ? '0.7' : '1';
+            btn.innerHTML = isLoading ? `<span class="btn-spinner" aria-hidden="true"></span> Cargando...` : originalText;
+        };
+
+        const handleGoogleCredential = async (response) => {
+            if (!response || !response.credential) {
+                showMessage('No se recibio credencial de Google.', true);
+                return;
+            }
+
+            const original = `<img src="https://www.google.com/favicon.ico" width="18"> Google Account`;
+            setLoader(googleBtn, true, original);
+            authMessage.style.display = 'none';
+
+            try {
+                const res = await fetch('php/google_login.php', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ credential: response.credential })
+                });
+                const result = await res.json();
+                if (result.success) {
+                    showMessage('Acceso concedido. Redirigiendo...');
+                    setTimeout(() => window.location.href = 'dashboard.php', 800);
+                    return;
+                }
+                showMessage(result.message || 'No se pudo iniciar con Google.', true);
+            } catch (err) {
+                console.error('Google login error:', err);
+                showMessage('Error de conexion con Google.', true);
+            } finally {
+                setLoader(googleBtn, false, original);
+            }
+        };
+
+        const initGoogleIdentity = async () => {
+            try {
+                const res = await fetch('php/google_client.php', { credentials: 'same-origin' });
+                const data = await res.json();
+                googleClientId = data.clientId || '';
+
+                if (!window.google || !window.google.accounts || !window.google.accounts.id) {
+                    showMessage('No se pudo cargar Google Identity.', true);
+                    return;
+                }
+                if (!googleClientId || googleClientId === 'REPLACE_WITH_GOOGLE_CLIENT_ID') {
+                    showMessage('Google Login no esta configurado en el servidor.', true);
+                    return;
+                }
+
+                window.google.accounts.id.initialize({
+                    client_id: googleClientId,
+                    callback: handleGoogleCredential,
+                    auto_select: false,
+                    cancel_on_tap_outside: true
+                });
+            } catch (err) {
+                console.error('Google init error:', err);
+                showMessage('No se pudo inicializar Google Login.', true);
+            }
+        };
+
+        const handleAuth = async (type, btn, originalText) => {
+            const userInput = document.querySelector('input[type="text"]')?.value;
+            const passInput = document.querySelector('input[type="password"]')?.value;
+
+            if (type === 'form' && (!userInput || !passInput)) {
+                showMessage('Por favor completa todos los campos.', true);
+                return;
+            }
+
+            setLoader(btn, true, originalText);
+            authMessage.style.display = 'none';
+
+            try {
+                // Simulate server delay for visibility
+                await new Promise(resolve => setTimeout(resolve, 800));
+                const token = await getCsrfToken();
+
+                const response = await fetch('php/auth.php', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': token
+                    },
+                    body: JSON.stringify({
+                        action: 'login',
+                        username: userInput,
+                        password: passInput,
+                        type: type // google or form
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showMessage('Acceso concedido. Redirigiendo...');
+                    setTimeout(() => window.location.href = 'dashboard.php', 800);
+                } else {
+                    showMessage(result.message || 'Error al iniciar sesi&oacute;n.', true);
+                    setLoader(btn, false, originalText);
+                }
+            } catch (error) {
+                showMessage('Error de conexi&oacute;n con el servidor.', true);
+                setLoader(btn, false, originalText);
+                console.error('Auth Error:', error);
+            }
+        };
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleAuth('form', loginBtn, 'Entrar al Panel');
+        });
+
+        googleBtn.addEventListener('click', () => {
+            if (!window.google || !window.google.accounts || !window.google.accounts.id) {
+                showMessage('Google Identity no esta disponible.', true);
+                return;
+            }
+            if (!googleClientId || googleClientId === 'REPLACE_WITH_GOOGLE_CLIENT_ID') {
+                showMessage('Google Login no esta configurado en el servidor.', true);
+                return;
+            }
+            window.google.accounts.id.prompt();
+        });
+
+        window.addEventListener('load', initGoogleIdentity);
+    </script>
+    <style>
+        .btn-spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin-right: 8px;
+            vertical-align: -2px;
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</body>
+
+</html>
